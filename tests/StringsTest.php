@@ -69,6 +69,35 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::pos
+     * @dataProvider providerPos
+     * @param int|bool $expected
+     * @param string $string
+     * @param string $needle
+     * @param int $offset [optional]
+     */
+    public function testPos($expected, $string, $needle, $offset = null)
+    {
+        $this->assertSame($expected, Strings::pos($string, $needle, $offset));
+    }
+
+    /**
+     * @return array
+     */
+    public function providerPos()
+    {
+        return [
+            [0, 'раз two раз three', 'раз'],
+            [4, 'раз two раз three', 'two'],
+            [8, 'раз two раз three', 'раз', 1],
+            [false, 'раз two раз three', 'раз', 10],
+            [false, 'раз two раз three', 'four'],
+            [false, 'раз two раз three', 'Раз'],
+            [false, 'раз two раз three', 'Three'],
+        ];
+    }
+
+    /**
      * @var string
      */
     private $savedIntervalEncoding;
