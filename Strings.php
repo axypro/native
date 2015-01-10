@@ -28,7 +28,7 @@ class Strings
      * @param string $haystack
      * @param string $needle
      * @param int $offset [optional]
-     * @return int|boolean
+     * @return int|bool
      *         the needle position or FALSE if it is not found
      */
     public static function pos($haystack, $needle, $offset = null)
@@ -42,12 +42,25 @@ class Strings
      * @param string $haystack
      * @param string $needle
      * @param int $offset [optional]
-     * @return int|boolean
+     * @return int|bool
      *         the needle position or FALSE if it is not found
      */
     public static function ipos($haystack, $needle, $offset = null)
     {
         return mb_stripos($haystack, $needle, $offset, self::$encoding);
+    }
+
+    /**
+     * Checks if the haystack contains the needle
+     *
+     * @param string $haystack
+     * @param string $needle
+     * @param int $offset [optional]
+     * @return bool
+     */
+    public static function contains($haystack, $needle, $offset = null)
+    {
+        return (mb_strpos($haystack, $needle, $offset, self::$encoding) !== false);
     }
 
     /**

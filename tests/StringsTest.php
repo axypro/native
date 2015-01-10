@@ -10,24 +10,29 @@ use axy\native\Strings;
 
 /**
  * coversDefaultClass axy\native\Strings
+ *
+ * To test of multibyte strings using cyrillic characters.
  */
 class StringsTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    public static function setUpBeforeClass()
     {
-        $this->savedIntervalEncoding = Strings::getInternalEncoding();
+        self::$savedIntervalEncoding = Strings::getInternalEncoding();
         Strings::setInternalEncoding('UTF-8');
+        self::$savedMbIntervalEncoding = mb_internal_encoding();
+        mb_internal_encoding('windows-1252');
     }
 
     /**
      * {@inheritdoc}
      */
-    public function tearDown()
+    public static function tearDownAfterClass()
     {
-        Strings::setInternalEncoding($this->savedIntervalEncoding);
+        Strings::setInternalEncoding(self::$savedIntervalEncoding);
+        mb_internal_encoding(self::$savedMbIntervalEncoding);
     }
 
     /**
@@ -127,7 +132,41 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::contains
+     * @dataProvider providerContains
+     * @param int|bool $expected
+     * @param string $string
+     * @param string $needle
+     * @param int $offset [optional]
+     */
+    public function testContains($expected, $string, $needle, $offset = null)
+    {
+        $this->assertSame($expected, Strings::contains($string, $needle, $offset));
+    }
+
+    /**
+     * @return array
+     */
+    public function providerContains()
+    {
+        return [
+            [true, 'раз two раз three', 'раз'],
+            [true, 'раз two раз three', 'two'],
+            [true, 'раз two раз three', 'раз', 1],
+            [false, 'раз two раз three', 'раз', 10],
+            [false, 'раз two раз three', 'four'],
+            [false, 'раз two раз three', 'Раз'],
+            [false, 'раз two раз three', 'Three'],
+        ];
+    }
+
+    /**
      * @var string
      */
-    private $savedIntervalEncoding;
+    private static $savedIntervalEncoding;
+
+    /**
+     * @var string
+     */
+    private static $savedMbIntervalEncoding;
 }
