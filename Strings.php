@@ -77,6 +77,21 @@ class Strings
     }
 
     /**
+     * Checks if the haystack begins with the needle
+     *
+     * @param string $haystack
+     * @param string $needle
+     * @param int $offset [optional]
+     * @return bool
+     */
+    public static function begins($haystack, $needle, $offset = null)
+    {
+        // This is more efficient than strpos() for the short needle and the long haystack (tokenizer for example)
+        $target = mb_substr($haystack, $offset ?: 0, mb_strlen($needle, self::$encoding), self::$encoding);
+        return ($needle === $target);
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding

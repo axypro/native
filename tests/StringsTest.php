@@ -190,6 +190,35 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::begins
+     * @dataProvider providerBegins
+     * @param int|bool $expected
+     * @param string $string
+     * @param string $needle
+     * @param int $offset [optional]
+     */
+    public function testBegins($expected, $string, $needle, $offset = null)
+    {
+        $this->assertSame($expected, Strings::begins($string, $needle, $offset));
+    }
+
+    /**
+     * @return array
+     */
+    public function providerBegins()
+    {
+        return [
+            [true, 'раз two раз three', 'раз'],
+            [false, 'раз two раз three', 'two'],
+            [false, 'раз two раз three', 'раз', 1],
+            [true, 'раз two раз three', 'раз', 8],
+            [false, 'раз two раз three', 'four'],
+            [false, 'раз two раз three', 'Раз'],
+            [false, 'раз two раз three', 'Three'],
+        ];
+    }
+
+    /**
      * @var string
      */
     private static $savedIntervalEncoding;
