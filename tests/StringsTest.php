@@ -161,6 +161,35 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::icontains
+     * @dataProvider providerIContains
+     * @param int|bool $expected
+     * @param string $string
+     * @param string $needle
+     * @param int $offset [optional]
+     */
+    public function testIcontains($expected, $string, $needle, $offset = null)
+    {
+        $this->assertSame($expected, Strings::icontains($string, $needle, $offset));
+    }
+
+    /**
+     * @return array
+     */
+    public function providerIcontains()
+    {
+        return [
+            [true, 'раз two раз three', 'раз'],
+            [true, 'раз two раз three', 'two'],
+            [true, 'раз two раз three', 'раз', 1],
+            [false, 'раз two раз three', 'раз', 10],
+            [false, 'раз two раз three', 'four'],
+            [true, 'раз two раз three', 'Раз'],
+            [true, 'раз two раз three', 'Three'],
+        ];
+    }
+
+    /**
      * @var string
      */
     private static $savedIntervalEncoding;

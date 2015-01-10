@@ -64,6 +64,19 @@ class Strings
     }
 
     /**
+     * Checks if the haystack contains the needle (case insensitive)
+     *
+     * @param string $haystack
+     * @param string $needle
+     * @param int $offset [optional]
+     * @return bool
+     */
+    public static function icontains($haystack, $needle, $offset = null)
+    {
+        return (mb_stripos($haystack, $needle, $offset, self::$encoding) !== false);
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding
