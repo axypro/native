@@ -1,6 +1,6 @@
 <?php
 /**
- * @package ayx/native
+ * @package axy/native
  * @author Oleg Grigoriev <go.vasac@gmail.com>
  */
 
