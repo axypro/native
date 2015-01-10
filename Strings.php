@@ -92,6 +92,20 @@ class Strings
     }
 
     /**
+     * Checks if the haystack begins with the needle (case insensitive)
+     *
+     * @param string $haystack
+     * @param string $needle
+     * @param int $offset [optional]
+     * @return bool
+     */
+    public static function ibegins($haystack, $needle, $offset = null)
+    {
+        $target = mb_substr($haystack, $offset ?: 0, mb_strlen($needle, self::$encoding), self::$encoding);
+        return (mb_strtolower($needle, self::$encoding) === mb_strtolower($target, self::$encoding));
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding
