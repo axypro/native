@@ -248,6 +248,31 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::isNotEmpty
+     * @dataProvider providerIsNotEmpty
+     * @param bool $expected
+     * @param string $string
+     */
+    public function testIsNotEmpty($expected, $string)
+    {
+        $this->assertSame($expected, Strings::isNotEmpty($string));
+    }
+
+    /**
+     * @return array
+     */
+    public function providerIsNotEmpty()
+    {
+        return [
+            [true, 'String'],
+            [true, '0'],
+            [false, ''],
+            [false, null],
+            [false, false],
+        ];
+    }
+
+    /**
      * @var string
      */
     private static $savedIntervalEncoding;

@@ -106,6 +106,20 @@ class Strings
     }
 
     /**
+     * Checks if the string is not empty
+     *
+     * @param $string
+     * @return boolean
+     */
+    public static function isNotEmpty($string)
+    {
+        if (is_string($string)) {
+            return ($string !== '');
+        }
+        return (!empty($string));
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding
