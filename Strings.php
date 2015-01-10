@@ -12,6 +12,17 @@ namespace axy\native;
 class Strings
 {
     /**
+     * Returns the length of the string
+     *
+     * @param string $string
+     * @return int
+     */
+    public static function length($string)
+    {
+        return mb_strlen($string, self::$encoding);
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding

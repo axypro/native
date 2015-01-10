@@ -40,8 +40,32 @@ class StringsTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($encoding, Strings::getInternalEncoding());
         Strings::setInternalEncoding('windows-1252');
         $this->assertSame('windows-1252', Strings::getInternalEncoding());
+        $this->assertSame(19, Strings::length('Это строка'));
         Strings::setInternalEncoding($encoding);
         $this->assertSame($encoding, Strings::getInternalEncoding());
+    }
+
+    /**
+     * covers ::length
+     * @dataProvider providerLength
+     * @param string $string
+     * @param int $length
+     */
+    public function testLength($string, $length)
+    {
+        $this->assertSame($length, Strings::length($string));
+    }
+
+    /**
+     * @return array
+     */
+    public function providerLength()
+    {
+        return [
+            ['This is string', 14],
+            ['Это строка', 10],
+            ['This is строка', 14],
+        ];
     }
 
     /**
