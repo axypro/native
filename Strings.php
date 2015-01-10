@@ -37,6 +37,20 @@ class Strings
     }
 
     /**
+     * Returns the position of first occurrence of the needle in the haystack (case insensitive)
+     *
+     * @param string $haystack
+     * @param string $needle
+     * @param int $offset [optional]
+     * @return int|boolean
+     *         the needle position or FALSE if it is not found
+     */
+    public static function ipos($haystack, $needle, $offset = null)
+    {
+        return mb_stripos($haystack, $needle, $offset, self::$encoding);
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding
