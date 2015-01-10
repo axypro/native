@@ -1,0 +1,27 @@
+{
+    "name": "axy/native",
+    "type": "library",
+    "description": "Organizing of built-in features",
+    "keywords": [
+        "Built-in",
+        "Native",
+        "Type"
+    ],
+    "homepage": "https://github.com/axypro/native",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Oleg Grigoriev",
+            "email": "go.vasac@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "axy\\native\\": ""
+        }
+    },
+    "target-dir": ""
+}
