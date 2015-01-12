@@ -120,6 +120,26 @@ class Strings
     }
 
     /**
+     * Returns a part of the string
+     *
+     * @param string $string
+     *        the original string
+     * @param int $start
+     *        the index of first character (begins from 0)
+     *        if is negative then it is index from the end of the string
+     * @param string $length [optional]
+     *        the length of the part string
+     *        if is NULL then returns all characters to the end of the string
+     *        if is negative then the length is measured from the end of the line
+     * @return string
+     *         the target part of the string (the empty string for invalid indexes)
+     */
+    public static function sub($string, $start, $length = null)
+    {
+        return mb_substr($string, $start, $length, self::$encoding);
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding

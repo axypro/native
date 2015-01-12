@@ -273,6 +273,39 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::sub
+     * @dataProvider providerSub
+     * @param string $string
+     * @param int $start
+     * @param int $length
+     * @param string $expected
+     */
+    public function testSub($string, $start, $length, $expected)
+    {
+        $this->assertSame($expected, Strings::sub($string, $start, $length));
+    }
+
+    /**
+     * @return array
+     */
+    public function providerSub()
+    {
+        return [
+            ['Это строка', 0, null, 'Это строка'],
+            ['Это строка', 3, null, ' строка'],
+            ['Это строка', 0, 5, 'Это с'],
+            ['Это строка', 4, 5, 'строк'],
+            ['Это строка', -8, null, 'о строка'],
+            ['Это строка', -8, 5, 'о стр'],
+            ['Это строка', -8, -5, 'о с'],
+            ['', 5, 5, ''],
+            ['Это строка', 100, null, ''],
+            ['Это строка', 10, -10, ''],
+            ['Это строка', -100, -8, 'Эт'],
+        ];
+    }
+
+    /**
      * @var string
      */
     private static $savedIntervalEncoding;
