@@ -151,6 +151,17 @@ class Strings
     }
 
     /**
+     * Makes a string uppercase
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function toUpperCase($string)
+    {
+        return mb_strtoupper($string, self::$encoding);
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding
