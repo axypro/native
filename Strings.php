@@ -173,6 +173,17 @@ class Strings
     }
 
     /**
+     * Makes the first character of each word uppercase (and lowercase for other)
+     *
+     * @param $string
+     * @return string
+     */
+    public static function wordsToUpperCase($string)
+    {
+        return mb_convert_case($string, MB_CASE_TITLE, self::$encoding);
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding

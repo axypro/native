@@ -309,6 +309,7 @@ class StringsTest extends \PHPUnit_Framework_TestCase
      * covers ::toLowerCase
      * covers ::toUpperCase
      * covers ::firstToUpperCase
+     * covers ::wordsToUpperCase
      */
     public function testCase()
     {
@@ -317,9 +318,11 @@ class StringsTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('THIS IS STRING. ЭТО СТРОКА (ЁЁ).', Strings::toUpperCase($string));
         $this->assertSame('This is STring.', Strings::firstToUpperCase('this is STring.'));
         $this->assertSame('ЭтО СтРока.', Strings::firstToUpperCase('этО СтРока.'));
+        $this->assertSame('This Is String. Это Строка (Ёё).', Strings::wordsToUpperCase($string));
         $this->assertSame('', Strings::toLowerCase(''));
         $this->assertSame('', Strings::toUpperCase(''));
         $this->assertSame('', Strings::firstToUpperCase(''));
+        $this->assertSame('', Strings::wordsToUpperCase(''));
     }
 
     /**
