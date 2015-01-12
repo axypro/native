@@ -326,6 +326,30 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::html
+     * @dataProvider providerHtml
+     * @param string $plain
+     * @param bool $nl
+     * @param string $expected
+     */
+    public function testHtml($plain, $nl, $expected)
+    {
+        $this->assertSame($expected, Strings::html($plain, $nl));
+    }
+
+    /**
+     * @return array
+     */
+    public function providerHtml()
+    {
+        return [
+            ['This is <b class="x">Строка</b>', false, 'This is &lt;b class=&quot;x&quot;&gt;Строка&lt;/b&gt;'],
+            ["> one\r\n> two\n> three", false, "&gt; one\r\n&gt; two\n&gt; three"],
+            ["> one\n> two\n> three", true, "&gt; one<br />\n&gt; two<br />\n&gt; three"],
+        ];
+    }
+
+    /**
      * @var string
      */
     private static $savedIntervalEncoding;

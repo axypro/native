@@ -184,6 +184,23 @@ class Strings
     }
 
     /**
+     * Converts a plain text to a html code
+     *
+     * @param string $plain
+     * @param bool $nl [optional]
+     *        format line breaks
+     * @return string
+     */
+    public static function html($plain, $nl = false)
+    {
+        $html = htmlspecialchars($plain, ENT_COMPAT | ENT_HTML5, self::$encoding);
+        if ($nl) {
+            $html = nl2br($html, true);
+        }
+        return $html;
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding
