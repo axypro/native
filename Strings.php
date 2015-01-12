@@ -162,6 +162,17 @@ class Strings
     }
 
     /**
+     * Makes a string's first character uppercase
+     *
+     * @param $string
+     * @return string
+     */
+    public static function firstToUpperCase($string)
+    {
+        return self::toUpperCase(self::sub($string, 0, 1)).self::sub($string, 1);
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding

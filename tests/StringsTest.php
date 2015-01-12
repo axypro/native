@@ -306,13 +306,20 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * covers ::lowerCase
+     * covers ::toLowerCase
+     * covers ::toUpperCase
+     * covers ::firstToUpperCase
      */
     public function testCase()
     {
         $string = 'This is strIng. Это стрОка (ёЁ).';
         $this->assertSame('this is string. это строка (ёё).', Strings::toLowerCase($string));
         $this->assertSame('THIS IS STRING. ЭТО СТРОКА (ЁЁ).', Strings::toUpperCase($string));
+        $this->assertSame('This is STring.', Strings::firstToUpperCase('this is STring.'));
+        $this->assertSame('ЭтО СтРока.', Strings::firstToUpperCase('этО СтРока.'));
+        $this->assertSame('', Strings::toLowerCase(''));
+        $this->assertSame('', Strings::toUpperCase(''));
+        $this->assertSame('', Strings::firstToUpperCase(''));
     }
 
     /**
