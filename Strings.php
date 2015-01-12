@@ -140,6 +140,17 @@ class Strings
     }
 
     /**
+     * Makes a string lowercase
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function toLowerCase($string)
+    {
+        return mb_strtolower($string, self::$encoding);
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding

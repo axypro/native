@@ -306,6 +306,15 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::lowerCase
+     */
+    public function testCase()
+    {
+        $string = 'This is strIng. Это стрОка (ёЁ).';
+        $this->assertSame('this is string. это строка (ёё).', Strings::toLowerCase($string));
+    }
+
+    /**
      * @var string
      */
     private static $savedIntervalEncoding;
