@@ -110,4 +110,23 @@ class Arrays
             throw new ArrayTypingError($varName, 'i');
         }
     }
+
+    /**
+     * An argument must be a dictionary
+     *
+     * @throws \axy\native\errors\ArrayTypingError
+     * @param mixed $a
+     * @param string $method
+     */
+    public static function mustDictionary($a, $method = null)
+    {
+        if (!self::isDictionary($a)) {
+            if ($method !== null) {
+                $varName = 'Argument of '.$method.'()';
+            } else {
+                $varName = null;
+            }
+            throw new ArrayTypingError($varName, 'd');
+        }
+    }
 }

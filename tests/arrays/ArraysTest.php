@@ -97,4 +97,16 @@ class ArraysTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('axy\native\errors\ArrayTypingError', $message);
         Arrays::mustIterator(new TestDictionary([1, 2]), 'mtd');
     }
+
+    /**
+     * covers ::mustDictionary
+     */
+    public function testMustDictionary()
+    {
+        Arrays::mustDictionary([1, 2]);
+        Arrays::mustDictionary(new TestDictionary([1, 2]), 'mtd');
+        $message = 'Argument of mtd() must be array or ArrayAccess';
+        $this->setExpectedException('axy\native\errors\ArrayTypingError', $message);
+        Arrays::mustDictionary(new TestIterator([1, 2]), 'mtd');
+    }
 }
