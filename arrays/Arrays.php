@@ -43,4 +43,31 @@ class Arrays
     {
         return (is_array($a) || ($a instanceof \ArrayAccess));
     }
+
+    /**
+     * Checks if an argument is an numeric array (or an array-like structure)
+     *
+     * @param mixed $a
+     * @return bool
+     */
+    public static function isNumeric($a)
+    {
+        if (is_array($a)) {
+            return (array_values($a) === $a);
+        }
+        if ($a instanceof \Traversable) {
+            $a = iterator_to_array($a);
+            return (array_values($a) === $a);
+        }
+        if (($a instanceof \ArrayAccess) && ($a instanceof \Countable)) {
+            $count = count($a);
+            for ($i = 0; $i < $count; $i++) {
+                if (!isset($a[$i])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
 }

@@ -9,6 +9,7 @@ namespace axy\native\tests\arrays;
 use axy\native\arrays\Arrays;
 use axy\native\tests\arrays\tst\TestIterator;
 use axy\native\tests\arrays\tst\TestDictionary;
+use axy\native\tests\arrays\tst\TestDictionaryCountable;
 
 /**
  * coversDefaultClass axy\native\arrays\Arrays;
@@ -24,7 +25,7 @@ class ArraysTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(Arrays::isNativeArray([1, 2, 3]));
         $this->assertFalse(Arrays::isNativeArray(new TestIterator([1, 2])));
         $this->assertFalse(Arrays::isNativeArray(new TestDictionary([1, 2])));
-        $this->assertFalse(Arrays::isNativeArray((object)[1, 2, 3]));
+        $this->assertFalse(Arrays::isNativeArray((object)['x' => 1, 'y' => 2, 'z' => 3]));
         $this->assertFalse(Arrays::isNativeArray('string'));
     }
 
@@ -37,7 +38,7 @@ class ArraysTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(Arrays::isIterator([1, 2, 3]));
         $this->assertTrue(Arrays::isIterator(new TestIterator([1, 2])));
         $this->assertFalse(Arrays::isIterator(new TestDictionary([1, 2])));
-        $this->assertFalse(Arrays::isIterator((object)[1, 2, 3]));
+        $this->assertFalse(Arrays::isIterator((object)['x' => 1, 'y' => 2, 'z' => 3]));
         $this->assertFalse(Arrays::isIterator('string'));
     }
 
@@ -50,7 +51,28 @@ class ArraysTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(Arrays::isDictionary([1, 2, 3]));
         $this->assertFalse(Arrays::isDictionary(new TestIterator([1, 2])));
         $this->assertTrue(Arrays::isDictionary(new TestDictionary([1, 2])));
-        $this->assertFalse(Arrays::isDictionary((object)[1, 2, 3]));
+        $this->assertFalse(Arrays::isDictionary((object)['x' => 1, 'y' => 2, 'z' => 3]));
         $this->assertFalse(Arrays::isDictionary('string'));
+    }
+
+    /**
+     * covers ::isNumeric
+     */
+    public function testIsNumeric()
+    {
+        $an = [1, 2, 3];
+        $ad = ['x' => 1, 'y' => 2, 'z' => 3];
+        $this->assertTrue(Arrays::isNumeric($an));
+        $this->assertFalse(Arrays::isNumeric($ad));
+        $this->assertTrue(Arrays::isNumeric(new TestIterator($an)));
+        $this->assertFalse(Arrays::isNumeric(new TestIterator($ad)));
+        $this->assertTrue(Arrays::isNumeric(new TestDictionaryCountable($an)));
+        $this->assertFalse(Arrays::isNumeric(new TestDictionaryCountable($ad)));
+        $this->assertFalse(Arrays::isNumeric(new TestDictionary($an)));
+        $this->assertFalse(Arrays::isNumeric(new TestDictionary($ad)));
+        $this->assertFalse(Arrays::isNumeric((object)$an));
+        $this->assertFalse(Arrays::isNumeric((object)$ad));
+        $this->assertFalse(Arrays::isNumeric('string'));
+
     }
 }

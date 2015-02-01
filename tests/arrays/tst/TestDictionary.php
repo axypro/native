@@ -51,5 +51,5 @@ class TestDictionary implements \ArrayAccess
     /**
      * @var array
      */
-    private $a;
+    protected $a;
 }
