@@ -27,4 +27,17 @@ class ArraysTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(Arrays::isNativeArray((object)[1, 2, 3]));
         $this->assertFalse(Arrays::isNativeArray('string'));
     }
+
+    /**
+     * covers ::isIterator
+     */
+    public function testIsIterator()
+    {
+        $this->assertTrue(Arrays::isIterator([]));
+        $this->assertTrue(Arrays::isIterator([1, 2, 3]));
+        $this->assertTrue(Arrays::isIterator(new TestIterator([1, 2])));
+        $this->assertFalse(Arrays::isIterator(new TestDictionary([1, 2])));
+        $this->assertFalse(Arrays::isIterator((object)[1, 2, 3]));
+        $this->assertFalse(Arrays::isIterator('string'));
+    }
 }

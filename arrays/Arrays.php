@@ -12,7 +12,7 @@ namespace axy\native\arrays;
 class Arrays
 {
     /**
-     * Checks if an argument has a "array" native type
+     * Checks if an argument has an "array" native type
      *
      * @param mixed $a
      * @return bool
@@ -20,5 +20,16 @@ class Arrays
     public static function isNativeArray($a)
     {
         return is_array($a);
+    }
+
+    /**
+     * Checks if an argument is an iterator (an array of a Traversable object)
+     *
+     * @param mixed $a
+     * @return bool
+     */
+    public static function isIterator($a)
+    {
+        return (is_array($a) || ($a instanceof \Traversable));
     }
 }
