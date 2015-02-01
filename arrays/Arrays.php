@@ -148,4 +148,23 @@ class Arrays
             throw new ArrayTypingError($varName, 'numeric array');
         }
     }
+
+    /**
+     * Converts an argument to native array
+     *
+     * @throws \axy\native\errors\ArrayTypingError
+     *         the value can not be converted into an array
+     * @param (array|\Traversable) $a
+     * @return array
+     */
+    public static function toArray($a)
+    {
+        if (is_array($a)) {
+            return $a;
+        }
+        if ($a instanceof \Traversable) {
+            return iterator_to_array($a);
+        }
+        throw new ArrayTypingError(null, 'i');
+    }
 }

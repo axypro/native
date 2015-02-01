@@ -122,4 +122,16 @@ class ArraysTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('axy\native\errors\ArrayTypingError', $message);
         Arrays::mustNumeric(new TestDictionaryCountable(['x' => 1, 'y' => 2]), 'mtd');
     }
+
+    /**
+     * covers ::toArray
+     */
+    public function testToArray()
+    {
+        $a = ['x' => 1, 'y' => 2];
+        $this->assertEquals($a, Arrays::toArray($a));
+        $this->assertEquals($a, Arrays::toArray(new TestIterator($a)));
+        $this->setExpectedException('axy\native\errors\ArrayTypingError');
+        Arrays::toArray(1);
+    }
 }
