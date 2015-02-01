@@ -17,7 +17,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "axy/errors": "~1.0.0"
     },
     "autoload": {
         "psr-4": {
