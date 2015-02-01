@@ -85,4 +85,16 @@ class ArraysTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('axy\native\errors\ArrayTypingError', $message);
         Arrays::mustNativeArray(new TestIterator([1, 2]), 'mtd');
     }
+
+    /**
+     * covers ::mustIterator
+     */
+    public function testMustIterator()
+    {
+        Arrays::mustIterator([1, 2]);
+        Arrays::mustIterator(new TestIterator([1, 2]), 'mtd');
+        $message = 'Argument of mtd() must be array or Traversable';
+        $this->setExpectedException('axy\native\errors\ArrayTypingError', $message);
+        Arrays::mustIterator(new TestDictionary([1, 2]), 'mtd');
+    }
 }

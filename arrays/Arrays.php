@@ -91,4 +91,23 @@ class Arrays
             throw new ArrayTypingError($varName, 'a');
         }
     }
+
+    /**
+     * An argument must be an iterator
+     *
+     * @throws \axy\native\errors\ArrayTypingError
+     * @param mixed $a
+     * @param string $method
+     */
+    public static function mustIterator($a, $method = null)
+    {
+        if (!self::isIterator($a)) {
+            if ($method !== null) {
+                $varName = 'Argument of '.$method.'()';
+            } else {
+                $varName = null;
+            }
+            throw new ArrayTypingError($varName, 'i');
+        }
+    }
 }
