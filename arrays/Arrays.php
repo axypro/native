@@ -6,6 +6,8 @@
 
 namespace axy\native\arrays;
 
+use axy\native\errors\ArrayTypingError;
+
 /**
  * Common array functions
  */
@@ -69,5 +71,24 @@ class Arrays
             return true;
         }
         return false;
+    }
+
+    /**
+     * An argument must be an array
+     *
+     * @throws \axy\native\errors\ArrayTypingError
+     * @param mixed $a
+     * @param string $method
+     */
+    public static function mustNativeArray($a, $method = null)
+    {
+        if (!is_array($a)) {
+            if ($method !== null) {
+                $varName = 'Argument of '.$method.'()';
+            } else {
+                $varName = null;
+            }
+            throw new ArrayTypingError($varName, 'a');
+        }
     }
 }

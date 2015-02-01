@@ -73,6 +73,16 @@ class ArraysTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(Arrays::isNumeric((object)$an));
         $this->assertFalse(Arrays::isNumeric((object)$ad));
         $this->assertFalse(Arrays::isNumeric('string'));
+    }
 
+    /**
+     * covers ::mustNativeArray
+     */
+    public function testMustNativeArray()
+    {
+        Arrays::mustNativeArray([1, 2]);
+        $message = 'Argument of mtd() must be array';
+        $this->setExpectedException('axy\native\errors\ArrayTypingError', $message);
+        Arrays::mustNativeArray(new TestIterator([1, 2]), 'mtd');
     }
 }
