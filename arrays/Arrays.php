@@ -32,4 +32,15 @@ class Arrays
     {
         return (is_array($a) || ($a instanceof \Traversable));
     }
+
+    /**
+     * Checks if an argument is a dictionary (an array of an ArrayAccess object)
+     *
+     * @param mixed $a
+     * @return bool
+     */
+    public static function isDictionary($a)
+    {
+        return (is_array($a) || ($a instanceof \ArrayAccess));
+    }
 }

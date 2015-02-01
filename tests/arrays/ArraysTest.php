@@ -40,4 +40,17 @@ class ArraysTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(Arrays::isIterator((object)[1, 2, 3]));
         $this->assertFalse(Arrays::isIterator('string'));
     }
+
+    /**
+     * covers ::isDictionary
+     */
+    public function testIsDictionary()
+    {
+        $this->assertTrue(Arrays::isDictionary([]));
+        $this->assertTrue(Arrays::isDictionary([1, 2, 3]));
+        $this->assertFalse(Arrays::isDictionary(new TestIterator([1, 2])));
+        $this->assertTrue(Arrays::isDictionary(new TestDictionary([1, 2])));
+        $this->assertFalse(Arrays::isDictionary((object)[1, 2, 3]));
+        $this->assertFalse(Arrays::isDictionary('string'));
+    }
 }
