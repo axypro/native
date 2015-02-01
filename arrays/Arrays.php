@@ -129,4 +129,23 @@ class Arrays
             throw new ArrayTypingError($varName, 'd');
         }
     }
+
+    /**
+     * An argument must be a numeric array
+     *
+     * @throws \axy\native\errors\ArrayTypingError
+     * @param mixed $a
+     * @param string $method
+     */
+    public static function mustNumeric($a, $method = null)
+    {
+        if (!self::isNumeric($a)) {
+            if ($method !== null) {
+                $varName = 'Argument of '.$method.'()';
+            } else {
+                $varName = null;
+            }
+            throw new ArrayTypingError($varName, 'numeric array');
+        }
+    }
 }

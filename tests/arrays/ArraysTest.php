@@ -109,4 +109,17 @@ class ArraysTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('axy\native\errors\ArrayTypingError', $message);
         Arrays::mustDictionary(new TestIterator([1, 2]), 'mtd');
     }
+
+    /**
+     * covers ::mustNumeric
+     */
+    public function testMustNumeric()
+    {
+        Arrays::mustNumeric([1, 2]);
+        Arrays::mustNumeric(new TestDictionaryCountable([1, 2]), 'mtd');
+        Arrays::mustNumeric(new TestIterator([1, 2]), 'mtd');
+        $message = 'Argument of mtd() must be numeric array';
+        $this->setExpectedException('axy\native\errors\ArrayTypingError', $message);
+        Arrays::mustNumeric(new TestDictionaryCountable(['x' => 1, 'y' => 2]), 'mtd');
+    }
 }
