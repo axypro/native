@@ -373,6 +373,29 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::chr
+     * @dataProvider providerChr
+     * @param string $code
+     * @param int $expected
+     */
+    public function testChr($code, $expected)
+    {
+        $this->assertSame($expected, Strings::chr($code));
+    }
+
+    /**
+     * @return array
+     */
+    public function providerChr()
+    {
+        return [
+            [65, 'A'],
+            [1105, 'ё'],
+            [119072, trim(file_get_contents(__DIR__.'/tst/119072.txt'))],
+        ];
+    }
+
+    /**
      * @var string
      */
     private static $savedIntervalEncoding;
