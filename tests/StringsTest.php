@@ -350,6 +350,29 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::ord
+     * @dataProvider providerOrd
+     * @param string $char
+     * @param int $expected
+     */
+    public function testOrd($char, $expected)
+    {
+        $this->assertSame($expected, Strings::ord($char));
+    }
+
+    /**
+     * @return array
+     */
+    public function providerOrd()
+    {
+        return [
+            ['A', 65],
+            ['ё', 1105],
+            [file_get_contents(__DIR__.'/tst/119072.txt'), 119072],
+        ];
+    }
+
+    /**
      * @var string
      */
     private static $savedIntervalEncoding;

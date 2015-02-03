@@ -201,6 +201,19 @@ class Strings
     }
 
     /**
+     * Returns a code of a character
+     *
+     * @param string $char
+     * @return int
+     */
+    public static function ord($char)
+    {
+        $charUCS = mb_convert_encoding($char, 'UCS-4BE', self::$encoding);
+        $code = unpack('N', $charUCS);
+        return $code[1];
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding
