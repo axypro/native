@@ -410,6 +410,82 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::providerCur
+     * @dataProvider providerCut
+     * @param string $string
+     * @param int $maxLength
+     * @param array $options
+     * @param string $expected
+     */
+    public function testCut($string, $maxLength, $options, $expected)
+    {
+        $this->assertSame($expected, Strings::cut($string, $maxLength, $options));
+    }
+
+    /**
+     * @return array
+     */
+    public function providerCut()
+    {
+        return [
+            [
+                'Раз. Два. Три. Четыре.',
+                100,
+                null,
+                'Раз. Два. Три. Четыре.',
+            ],
+            [
+                'Раз. Два. Три. Четыре.',
+                10,
+                null,
+                'Раз. Дв...',
+            ],
+            [
+                'Раз. Два. Три. Четыре.',
+                10,
+                ['end' => ''],
+                'Раз. Два. ',
+            ],
+            [
+                'Раз. Два. Три. Четыре.',
+                10,
+                ['end' => 'qw'],
+                'Раз. Дваqw',
+            ],
+            [
+                'Раз. Два. Три. Четыре.',
+                10,
+                ['end' => 'qw', 'endSingle' => true],
+                'Раз. Два.qw',
+            ],
+            [
+                'Раз. Два. Три. Четыре.',
+                16,
+                ['sep' => true],
+                'Раз. Два. Три...',
+            ],
+            [
+                'Раз. Два. Три. Четыре.',
+                15,
+                ['sep' => true],
+                'Раз. Два....',
+            ],
+            [
+                'qwertyuiop',
+                8,
+                ['sep' => true, 'maxCut' => 100],
+                '...',
+            ],
+            [
+                'qwertyuiop',
+                8,
+                ['sep' => true],
+                'qwer...',
+            ],
+        ];
+    }
+
+    /**
      * @var string
      */
     private static $savedIntervalEncoding;

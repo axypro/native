@@ -6,6 +6,8 @@
 
 namespace axy\native;
 
+use axy\native\helpers\StringsHelper;
+
 /**
  * String functions
  */
@@ -240,6 +242,26 @@ class Strings
     public static function convertEncoding($string, $to = null, $from = null)
     {
         return mb_convert_encoding($string, $to ?: self::$encoding, $from ?: self::$encoding);
+    }
+
+    /**
+     * Cuts a string
+     *
+     * @param string $string
+     *        the input string
+     * @param int $maxLength
+     *        maximum length of the result string
+     * @param array $options [optional]
+     *        "end" - the end of the string
+     *        "endSingle" - use the end as a single character ("&hellip;" for example)
+     *        "sep" - a RegExp for cut the end (by default is none, true - "/\s*\p{L}+$/u")
+     *        "maxCut" - maximum cut for $sep-search (by default min[10, half length])
+     * @return string
+     *         the cutted string
+     */
+    public static function cut($string, $maxLength, array $options = null)
+    {
+        return StringsHelper::cut($string, $maxLength, $options, self::$encoding);
     }
 
     /**
