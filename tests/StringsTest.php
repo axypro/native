@@ -396,6 +396,20 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::convertEncoding
+     */
+    public function testConvertEncoding()
+    {
+        $this->assertSame('A', Strings::convertEncoding('A', 'windows-1251'));
+        $this->assertSame('A', Strings::convertEncoding('A', null, 'windows-1251'));
+        $this->assertSame('A', Strings::convertEncoding('A'));
+        $this->assertSame('и', Strings::convertEncoding('и'));
+        $this->assertSame(chr(232), Strings::convertEncoding('и', 'windows-1251'));
+        $this->assertSame('к', Strings::convertEncoding(chr(234), null, 'windows-1251'));
+        $this->assertSame(chr(204), Strings::convertEncoding(chr(235), 'koi8-r', 'windows-1251'));
+    }
+
+    /**
      * @var string
      */
     private static $savedIntervalEncoding;

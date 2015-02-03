@@ -226,6 +226,23 @@ class Strings
     }
 
     /**
+     * Converts encoding of a string
+     *
+     * @param string $string
+     *        the string in the original encoding
+     * @param string $to [optional]
+     *        the target encoding (by default used the internal encoding)
+     * @param string $from [optional]
+     *        the original encoding (by default use the internal encoding)
+     * @return string
+     *         the string is the target encoding
+     */
+    public static function convertEncoding($string, $to = null, $from = null)
+    {
+        return mb_convert_encoding($string, $to ?: self::$encoding, $from ?: self::$encoding);
+    }
+
+    /**
      * Sets the internal encoding of the class
      *
      * @param string $encoding
