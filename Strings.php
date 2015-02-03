@@ -201,7 +201,7 @@ class Strings
     }
 
     /**
-     * Returns a code of a character
+     * Returns an unicode code of a character
      *
      * @param string $char
      * @return int
@@ -214,7 +214,7 @@ class Strings
     }
 
     /**
-     * Returns a character by a code
+     * Returns a character by an unicode code
      *
      * @param int $code
      * @return string
