@@ -9,9 +9,9 @@ namespace axy\native\arrays;
 use axy\native\errors\ArrayTypingError;
 
 /**
- * Common array functions
+ * Typing for array-like structures
  */
-class Arrays
+class Typing
 {
     /**
      * Checks if an argument has an "array" native type
