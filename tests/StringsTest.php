@@ -103,22 +103,22 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * covers ::ipos
-     * @dataProvider providerIpos
+     * covers ::posCI
+     * @dataProvider providerPosCI
      * @param int|bool $expected
      * @param string $string
      * @param string $needle
      * @param int $offset [optional]
      */
-    public function testIpos($expected, $string, $needle, $offset = null)
+    public function testPosCI($expected, $string, $needle, $offset = null)
     {
-        $this->assertSame($expected, Strings::ipos($string, $needle, $offset));
+        $this->assertSame($expected, Strings::posCI($string, $needle, $offset));
     }
 
     /**
      * @return array
      */
-    public function providerIpos()
+    public function providerPosCI()
     {
         return [
             [0, 'раз two раз three', 'раз'],
@@ -161,22 +161,22 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * covers ::icontains
-     * @dataProvider providerIContains
+     * covers ::containsCI
+     * @dataProvider providerContainsCI
      * @param int|bool $expected
      * @param string $string
      * @param string $needle
      * @param int $offset [optional]
      */
-    public function testIcontains($expected, $string, $needle, $offset = null)
+    public function testContainsCI($expected, $string, $needle, $offset = null)
     {
-        $this->assertSame($expected, Strings::icontains($string, $needle, $offset));
+        $this->assertSame($expected, Strings::containsCI($string, $needle, $offset));
     }
 
     /**
      * @return array
      */
-    public function providerIcontains()
+    public function providerContainsCI()
     {
         return [
             [true, 'раз two раз three', 'раз'],
@@ -219,22 +219,22 @@ class StringsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * covers ::ibegins
-     * @dataProvider providerIbegins
+     * covers ::beginsCI
+     * @dataProvider providerBeginsCI
      * @param int|bool $expected
      * @param string $string
      * @param string $needle
      * @param int $offset [optional]
      */
-    public function testIbegins($expected, $string, $needle, $offset = null)
+    public function testBeginsCI($expected, $string, $needle, $offset = null)
     {
-        $this->assertSame($expected, Strings::ibegins($string, $needle, $offset));
+        $this->assertSame($expected, Strings::beginsCI($string, $needle, $offset));
     }
 
     /**
      * @return array
      */
-    public function providerIbegins()
+    public function providerBeginsCI()
     {
         return [
             [true, 'раз two раз three', 'раз'],

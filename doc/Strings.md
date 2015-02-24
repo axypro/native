@@ -37,9 +37,9 @@ By default for `$to` and `$from` used the internal encoding.
 All of these methods are looking for a substring (`$needle`) in a string (`$haystack`).
 These methods taking an argument `$offset` which specify an offset in `$haystack` to begin searching 
 (by default it is the begin of the string).
-These methods have two form: case sensitive and case insensitive (has a prefix `i`).
+These methods have two form: case sensitive and case insensitive (has a suffix `CI`).
 
-##### `pos(string $haystack, string $needle [, int $offset]):int|FALSE` and `ipos()`
+##### `pos(string $haystack, string $needle [, int $offset]):int|FALSE` and `posCI()`
 
 Returns the position of first occurrence of the needle in the haystack.
 Counting starts at zero.
@@ -49,10 +49,10 @@ If the needle was not found it returns `FALSE`.
 Strings::pos('One, Two, Three, One, Two', 'One'); // 0
 Strings::pos('One, Two, Three, One, Two', 'One', 10); // 17 (offset)
 Strings::pos('One, Two, Three, One, Two', 'two'); // FALSE
-Strings::ipos('One, Two, Three, One, Two', 'two'); // 5 (case insensitive)
+Strings::posCI('One, Two, Three, One, Two', 'two'); // 5 (case insensitive)
 ```
 
-##### `contains(string $haystack, string $needle [, int $offset]):bool` and `icontains()`
+##### `contains(string $haystack, string $needle [, int $offset]):bool` and `containsCI()`
 
 Checks if the haystack contains the needle.
 Returns `TRUE` if the needle is in the haystack and `FALSE` if no.
@@ -63,10 +63,10 @@ Strings::contains('One, Two, Three', 'Two'); // TRUE
 Strings::contains('One, Two, Three', 'Four'); // FALSE
 Strings::contains('One, Two, Three', 'One', 10); // FALSE
 Strings::contains('One, Two, Three', 'two'); // FALSE
-Strings::icontains('One, Two, Three', 'two'); // TRUE
+Strings::containsCI('One, Two, Three', 'two'); // TRUE
 ```
 
-##### `begins(string $haystack, string $needle [, int $offset]):bool` and `ibegins()`
+##### `begins(string $haystack, string $needle [, int $offset]):bool` and `beginsCI()`
 
 Checks if the haystack begins with the needle.
 
@@ -75,7 +75,7 @@ Strings::begins('One, Two, Three', 'One'); // TRUE
 Strings::begins('One, Two, Three', 'Two'); // FALSE
 Strings::begins('One, Two, Three', 'Two', 4); // TRUE
 Strings::begins('One, Two, Three', 'one'); // FALSE
-Strings::ibegins('One, Two, Three', 'one'); // FALSE
+Strings::beginsCI('One, Two, Three', 'one'); // FALSE
 ```
 ## Changing case
 

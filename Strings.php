@@ -47,7 +47,7 @@ class Strings
      * @return int|bool
      *         the needle position or FALSE if it is not found
      */
-    public static function ipos($haystack, $needle, $offset = null)
+    public static function posCI($haystack, $needle, $offset = null)
     {
         return mb_stripos($haystack, $needle, $offset, self::$encoding);
     }
@@ -73,7 +73,7 @@ class Strings
      * @param int $offset [optional]
      * @return bool
      */
-    public static function icontains($haystack, $needle, $offset = null)
+    public static function containsCI($haystack, $needle, $offset = null)
     {
         return (mb_stripos($haystack, $needle, $offset, self::$encoding) !== false);
     }
@@ -101,7 +101,7 @@ class Strings
      * @param int $offset [optional]
      * @return bool
      */
-    public static function ibegins($haystack, $needle, $offset = null)
+    public static function beginsCI($haystack, $needle, $offset = null)
     {
         $target = mb_substr($haystack, $offset ?: 0, mb_strlen($needle, self::$encoding), self::$encoding);
         return (mb_strtolower($needle, self::$encoding) === mb_strtolower($target, self::$encoding));
