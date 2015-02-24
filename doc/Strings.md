@@ -157,7 +157,7 @@ Strings::sub('this is string', 3, 6); // s is s
 Strings::sub('this is string', 3); // s is string (to the end of the string)
 Strings::sub('this is string', 0); // this is string (from the begin to the end)
 Strings::sub('this is string', -3, 5); // ing (starting with 3rd character from the end)
-Strings::sub('this is string', 3, -3); // s is str (to 3rd characted from the end)
+Strings::sub('this is string', 3, -3); // s is str (to 3rd character from the end)
 ```
 
 ##### `cut(string $string, int $maxLength [, array $options]):string`
